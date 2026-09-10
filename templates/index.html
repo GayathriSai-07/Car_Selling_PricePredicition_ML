@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CarPrice AI | Home</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="home-page">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🚗 CarPrice <span>AI</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}"
+               class="active">
+                Home
+            </a>
+
+            <a href="{{ url_for('predict') }}">
+                Predict
+            </a>
+
+            <a href="{{ url_for('about') }}">
+                About
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ✨ AI Powered Car Price Prediction
+            </div>
+
+            <h1>
+                Discover Your Car's
+                <span>True Market Value</span>
+            </h1>
+
+            <p>
+                Get an estimated selling price for your car
+                using machine learning and important vehicle
+                information.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{{ url_for('predict') }}"
+                   class="primary-button">
+
+                    Predict Car Price →
+
+                </a>
+
+                <a href="{{ url_for('about') }}"
+                   class="secondary-button">
+
+                    Learn More
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="home-features">
+
+        <div class="feature-card">
+
+            <div class="feature-card-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Fast Prediction
+            </h3>
+
+            <p>
+                Get an estimated car price quickly
+                using our machine learning model.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-card-icon">
+                📊
+            </div>
+
+            <h3>
+                Data Driven
+            </h3>
+
+            <p>
+                The prediction is based on important
+                vehicle features and historical data.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-card-icon">
+                🎯
+            </div>
+
+            <h3>
+                Easy to Use
+            </h3>
+
+            <p>
+                Enter your vehicle details and receive
+                an approximate selling price.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>

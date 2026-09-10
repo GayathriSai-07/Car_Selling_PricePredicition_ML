@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CarPrice AI | About</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="about-page">
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🚗 CarPrice <span>AI</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('predict') }}">
+                Predict
+            </a>
+
+            <a href="{{ url_for('about') }}"
+               class="active">
+                About
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ABOUT HERO -->
+
+    <section class="about-header">
+
+        <div class="about-badge">
+            🚗 About CarPrice AI
+        </div>
+
+        <h1>
+            Smart Car Price
+            <span>Prediction</span>
+        </h1>
+
+        <p>
+            CarPrice AI is a machine learning based web
+            application designed to estimate the approximate
+            selling price of used cars.
+        </p>
+
+    </section>
+
+
+    <!-- ABOUT CARDS -->
+
+    <section class="about-cards">
+
+
+        <div class="about-card">
+
+            <div class="about-card-icon">
+                🤖
+            </div>
+
+            <h2>
+                Machine Learning
+            </h2>
+
+            <p>
+                Our system uses a trained machine learning
+                model to analyze vehicle information and
+                estimate an appropriate selling price.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <div class="about-card-icon">
+                📊
+            </div>
+
+            <h2>
+                Data Driven
+            </h2>
+
+            <p>
+                The model considers important factors such
+                as present price, kilometers driven, car age,
+                fuel type, seller type, transmission and owners.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <div class="about-card-icon">
+                ⚙️
+            </div>
+
+            <h2>
+                Easy to Use
+            </h2>
+
+            <p>
+                Users only need to enter their vehicle details
+                and click the prediction button to receive
+                an estimated selling price.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <div class="about-card-icon">
+                🎯
+            </div>
+
+            <h2>
+                Project Goal
+            </h2>
+
+            <p>
+                The goal is to demonstrate how machine learning
+                can be applied to real-world vehicle price
+                prediction and analysis.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- TECHNOLOGY -->
+
+    <section class="technology-section">
+
+        <h2>
+            Technologies Used
+        </h2>
+
+        <div class="technology-list">
+
+            <span>🐍 Python</span>
+
+            <span>🌐 Flask</span>
+
+            <span>📊 Pandas</span>
+
+            <span>🔢 NumPy</span>
+
+            <span>🤖 Scikit-learn</span>
+
+            <span>🎨 HTML & CSS</span>
+
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>

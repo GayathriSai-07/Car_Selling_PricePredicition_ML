@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CarPrice AI | Predict</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="predict-page">
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🚗 CarPrice <span>AI</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('predict') }}"
+               class="active">
+                Predict
+            </a>
+
+            <a href="{{ url_for('about') }}">
+                About
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN PREDICTION AREA -->
+
+    <main class="predict-container">
+
+
+        <!-- LEFT SIDE -->
+
+        <section class="vehicle-section">
+
+            <div class="section-heading">
+
+                <div class="heading-icon">
+                    🚗
+                </div>
+
+                <div>
+
+                    <h1>
+                        Vehicle Information
+                    </h1>
+
+                    <p>
+                        Enter your car details
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ERROR MESSAGE -->
+
+            {% if error %}
+
+            <div class="error-box">
+                ⚠️ {{ error }}
+            </div>
+
+            {% endif %}
+
+
+            <!-- FORM -->
+
+            <form method="POST"
+                  action="{{ url_for('predict') }}">
+
+
+                <!-- PRESENT PRICE + KMS -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Present Price (Lakhs)
+                        </label>
+
+                        <input
+                            type="number"
+                            step="0.01"
+                            name="present_price"
+                            placeholder="Example: 5.50"
+                            value="{{ form_data.get('present_price', '') }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Kilometers Driven
+                        </label>
+
+                        <input
+                            type="number"
+                            name="kms_driven"
+                            placeholder="Example: 30000"
+                            value="{{ form_data.get('kms_driven', '') }}"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CAR AGE + FUEL -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Car Age (Years)
+                        </label>
+
+                        <input
+                            type="number"
+                            name="car_age"
+                            placeholder="Example: 5"
+                            value="{{ form_data.get('car_age', '') }}"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Fuel Type
+                        </label>
+
+                        <select name="fuel_type"
+                                required>
+
+                            <option value="">
+                                Select Fuel Type
+                            </option>
+
+                            <option value="Petrol"
+                                {% if form_data.get('fuel_type') == 'Petrol' %}
+                                selected
+                                {% endif %}>
+                                Petrol
+                            </option>
+
+                            <option value="Diesel"
+                                {% if form_data.get('fuel_type') == 'Diesel' %}
+                                selected
+                                {% endif %}>
+                                Diesel
+                            </option>
+
+                            <option value="CNG"
+                                {% if form_data.get('fuel_type') == 'CNG' %}
+                                selected
+                                {% endif %}>
+                                CNG
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SELLER + TRANSMISSION -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Seller Type
+                        </label>
+
+                        <select name="seller_type"
+                                required>
+
+                            <option value="">
+                                Select Seller Type
+                            </option>
+
+                            <option value="Dealer"
+                                {% if form_data.get('seller_type') == 'Dealer' %}
+                                selected
+                                {% endif %}>
+                                Dealer
+                            </option>
+
+                            <option value="Individual"
+                                {% if form_data.get('seller_type') == 'Individual' %}
+                                selected
+                                {% endif %}>
+                                Individual
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Transmission
+                        </label>
+
+                        <select name="transmission"
+                                required>
+
+                            <option value="">
+                                Select Transmission
+                            </option>
+
+                            <option value="Manual"
+                                {% if form_data.get('transmission') == 'Manual' %}
+                                selected
+                                {% endif %}>
+                                Manual
+                            </option>
+
+                            <option value="Automatic"
+                                {% if form_data.get('transmission') == 'Automatic' %}
+                                selected
+                                {% endif %}>
+                                Automatic
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PREVIOUS OWNERS -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Previous Owners
+                        </label>
+
+                        <select name="owner"
+                                required>
+
+                            <option value="">
+                                Select Previous Owners
+                            </option>
+
+                            <option value="0"
+                                {% if form_data.get('owner') == '0' %}
+                                selected
+                                {% endif %}>
+                                0 - First Owner
+                            </option>
+
+                            <option value="1"
+                                {% if form_data.get('owner') == '1' %}
+                                selected
+                                {% endif %}>
+                                1 - Second Owner
+                            </option>
+
+                            <option value="2"
+                                {% if form_data.get('owner') == '2' %}
+                                selected
+                                {% endif %}>
+                                2 - Third Owner
+                            </option>
+
+                            <option value="3"
+                                {% if form_data.get('owner') == '3' %}
+                                selected
+                                {% endif %}>
+                                3 - More Owners
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                    </div>
+
+                </div>
+
+
+                <!-- PREDICT BUTTON -->
+
+                <button type="submit"
+                        class="predict-button">
+
+                    🚗 Predict Selling Price
+                    <span>→</span>
+
+                </button>
+
+
+            </form>
+
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+
+        <section class="result-section">
+
+
+            {% if prediction is not none %}
+
+            <!-- PREDICTION RESULT -->
+
+            <div class="result-card success-result">
+
+                <div class="result-icon">
+                    💰
+                </div>
+
+                <p class="result-small-title">
+                    Estimated Selling Price
+                </p>
+
+                <h2>
+                    ₹ {{ "%.2f"|format(prediction) }} Lakhs
+                </h2>
+
+                <div class="result-line"></div>
+
+                <p class="result-description">
+
+                    This is the approximate selling price
+                    estimated by the machine learning model
+                    based on the vehicle details you entered.
+
+                </p>
+
+            </div>
+
+
+            {% else %}
+
+            <!-- BEFORE PREDICTION -->
+
+            <div class="result-card empty-result">
+
+                <div class="result-icon">
+                    💰
+                </div>
+
+                <h2>
+                    Prediction Result
+                </h2>
+
+                <p>
+                    Your estimated selling price will
+                    appear here after you enter your
+                    vehicle information.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+
+            <!-- INFORMATION -->
+
+            <div class="result-info">
+
+                <div>
+
+                    <span>⚡</span>
+
+                    <p>
+                        Fast ML prediction
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <span>📊</span>
+
+                    <p>
+                        Data driven
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <span>🎯</span>
+
+                    <p>
+                        Approximate value
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>
